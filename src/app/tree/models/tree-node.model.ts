@@ -24,7 +24,9 @@ export class TreeNode implements ITreeNode {
     }
   };
   @computed get isAllSelected() {
-    if (this.isSelectable()) {
+    if (this.isSelectable() && !this.isDisabledCheckbox) {
+     /*  console.log(this.data.displayName)
+      console.log(this.isDisabledCheckbox) */
       return this.treeModel.isSelected(this);
     } else {
       return every(this.children, (node: TreeNode) => node.isAllSelected);
@@ -340,10 +342,12 @@ export class TreeNode implements ITreeNode {
   }
 
   @action setIsSelected(value) {
-    if (this.isSelectable()) {
-      this.treeModel.setSelectedNode(this, value);
-    } else {
-      this.visibleChildren.forEach((child) => child.setIsSelected(value));
+    if(!this.isDisabledCheckbox){
+      if (this.isSelectable()) {
+        this.treeModel.setSelectedNode(this, value);
+      } else {
+        this.visibleChildren.forEach((child) => child.setIsSelected(value));
+      }
     }
 
     return this;

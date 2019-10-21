@@ -8,6 +8,7 @@ import { TreeNode } from '../models/tree-node.model';
   template: `
    
     <ng-container *mobxAutorun="{dontDetach: true}">
+    {{node.isPartiallySelected}}
       <input 
         *ngIf="node.enableCheckBox"
         class="tree-node-checkbox"

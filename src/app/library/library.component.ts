@@ -31,8 +31,8 @@ export class LibraryComponent implements OnInit,AfterViewInit {
     {
       name: 'root1',
       id:1,
-      displayName: 'Dashboard',
-      expanded: false,
+      displayName: 'root1',
+      expanded: true,
       selectable: true,
       state: {
         entitled: true,
@@ -47,119 +47,33 @@ export class LibraryComponent implements OnInit,AfterViewInit {
           selectable: true,
           state: {
             entitled: true,
-            disabled: true
-          },
-          children: [
-            
-          ]
-        }
-      ]
-    },
-    {
-      name: 'root2',
-      displayName: 'Dashboard1',
-      id:52,
-      expanded: false,
-      selectable: false,
-      children: [
-        {
-          name: 'root2child1',
-          displayName: 'root2child1',
-          expanded: false,
-          selectable: true,
-          state: {
-            entitled: true,
             disabled: false
           },
-          children: [
-            
-          ]
+          children: []
         },
         {
           name: 'child2',
-          displayName: 'root2child2',
-          id:72,
+          displayName: 'child2',
+          id:36,
+          expanded: false,
+          selectable: true,
+          state: {
+            entitled: true,
+            disabled: true
+          },
+          children: []
+        },
+        {
+          name: 'child3',
+          displayName: 'child3',
+          id:36,
           expanded: false,
           selectable: true,
           state: {
             entitled: true,
             disabled: false
           },
-          children: [
-            {
-              name: 'grandchild1',
-              displayName: 'grandchild1 Dashboard1',
-              id:82,
-              expanded: false,
-              selectable: true,
-              state: {
-                entitled: true,
-                disabled: true
-              },
-              children:[
-                {
-                  name: 'child1',
-                  displayName: 'grandchild1',
-                  id:94,
-                  expanded: false,
-                  selectable: true,
-                  state: {
-                    entitled: true,
-                    disabled: false
-                  },
-                  children: [
-                    
-                  ]
-                },
-                {
-                  name: 'child2',
-                  displayName: 'grandchild2',
-                  id:108,
-                  expanded: false,
-                  selectable: true,
-                  state: {
-                    entitled: true,
-                    disabled: false
-                  },
-                  children: [
-                    {
-                      name: 'grandchild1',
-                      displayName: 'grandchild3 Dashboard1',
-                      id:119,
-                      expanded: false,
-                      selectable: true,
-                      state: {
-                        entitled: true,
-                        disabled: false
-                      },
-                      children:[]
-                    },
-                    {
-                      name: 'grandchild2',
-                      displayName: 'grandchild3 Dashboard1',
-                      id:131,
-                      expanded: false,
-                      selectable: true,
-                      state: {
-                        entitled: true,
-                        disabled: false
-                      }
-                    }
-                  ]
-                }]
-            },
-            {
-              name: 'grandchild2',
-              displayName: 'grandchild1 Dashboard1',
-              id:145,
-              expanded: false,
-              selectable: true,
-              state: {
-                entitled: true,
-                disabled: false
-              }
-            }
-          ]
+          children: []
         }
       ]
     }
@@ -170,7 +84,7 @@ export class LibraryComponent implements OnInit,AfterViewInit {
       isExpandedField: 'expanded',
       idField: 'uuid',
       useCheckbox: true,
-      useTriState: false,
+      useTriState: true,
       checkBoxField:'selectable',
       isDisabledCheckboxField:'state.disabled',
       actionMapping: {
@@ -217,8 +131,9 @@ export class LibraryComponent implements OnInit,AfterViewInit {
   }
 
   activeNodes(treeModel: any) {
+    console.clear();
     this.treeComponent.treeModel.doForAll(function (node: TreeNode) {
-      if (node.isSelected) {
+      if (node.isSelected && !node.isPartiallySelected) {
         console.log(node.data );
       }
     
