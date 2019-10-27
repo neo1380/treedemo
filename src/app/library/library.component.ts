@@ -49,7 +49,42 @@ export class LibraryComponent implements OnInit,AfterViewInit {
             entitled: true,
             disabled: false
           },
-          children: []
+          children: [{
+            name: 'Dashboard',
+            displayName: 'Dashboard',
+            id:45654,
+            expanded: false,
+            selectable: true,
+            state: {
+              entitled: true,
+              disabled: false
+            },
+            children: []
+          },
+          {
+            name: 'Laptop',
+            displayName: 'Laptop',
+            id:3455,
+            expanded: false,
+            selectable: true,
+            state: {
+              entitled: true,
+              disabled: false
+            },
+            children: []
+          },
+          {
+            name: 'Electronics',
+            displayName: 'Electronics',
+            id:25465,
+            expanded: false,
+            selectable: true,
+            state: {
+              entitled: true,
+              disabled: false
+            },
+            children: []
+          }]
         },
         {
           name: 'child2',
@@ -59,7 +94,7 @@ export class LibraryComponent implements OnInit,AfterViewInit {
           selectable: true,
           state: {
             entitled: true,
-            disabled: true
+            disabled: false
           },
           children: []
         },
@@ -136,9 +171,42 @@ export class LibraryComponent implements OnInit,AfterViewInit {
       if (node.isSelected && !node.isPartiallySelected) {
         console.log(node.data );
       }
-    
     });
   }
+
+  getSelectedNodes(tree:TreeModel)
+{
+  console.log(tree.activeNodes);
+    Object.keys(tree.selectedLeafNodeIds).forEach(x=>{
+      let node:TreeNode=tree.getNodeById(x);
+      if (node.isSelected)
+      {
+         console.log("Selected:",node.data.name,
+                     "Parent:",node.parent.data.name);
+      }
+  }) 
+}
+filterNodes(text, tree)                      {
+  tree.treeModel.filterNodes(text, true);
+}
+
+clearTree(tree:TreeModel){
+ 
+   
+    Object.keys(tree.selectedLeafNodeIds).forEach(x=>{
+      let node:TreeNode=tree.getNodeById(x);
+      
+      if (node.isSelected)
+      {
+       node.setIsSelected(false)
+      }
+  }) 
+   
+}
+
+clearFilter(){
+  this.treeComponent.treeModel.clearFilter();
+}
 
 
 

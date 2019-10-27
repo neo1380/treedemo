@@ -40,7 +40,21 @@
   getActiveNodes()
 </button>
 
+<button
+  (click)="getSelectedNodes(tree.treeModel)">
+  getSelectedNodes()
+</button>
 
+<button
+  (click)="clearTree(tree.treeModel)">
+  clearTree()
+</button>
+
+<input #filter (keyup)="filterNodes(filter.value, tree)" placeholder="filter nodes" />
+<button
+  (click)="clearFilter()">
+  clearFilter()
+</button>
  
 
 
