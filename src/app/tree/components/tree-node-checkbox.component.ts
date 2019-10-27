@@ -14,9 +14,9 @@ import { TreeNode } from '../models/tree-node.model';
         class="tree-node-checkbox"
         type="checkbox"
         (click)="node.mouseAction('checkboxClick', $event)"
-        [checked]="node.isSelected && !node.isDisabledCheckbox"
+        [checked]="node.isSelected && !node.isDisabledCheckbox && node.isAllSelected"
         [disabled] = "node.isDisabledCheckbox"
-        [indeterminate]="node.isPartiallySelected"/>
+      />
     </ng-container>
   `
 })

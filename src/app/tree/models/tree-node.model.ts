@@ -338,7 +338,7 @@ export class TreeNode implements ITreeNode {
   }
 
   isSelectable() {
-    return this.isLeaf || !this.children || !this.options.useTriState;
+    return this.isLeaf || !this.children;
   }
 
   @action setIsSelected(value) {
@@ -355,13 +355,11 @@ export class TreeNode implements ITreeNode {
 
   toggleSelected() {
     this.setIsSelected(!this.isSelected);
-
     return this;
   }
 
   toggleActivated(multi = false) {
     this.setIsActive(!this.isActive, multi);
-
     return this;
   }
 

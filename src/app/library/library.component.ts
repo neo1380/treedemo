@@ -27,7 +27,53 @@ export class LibraryComponent implements OnInit,AfterViewInit {
   constructor() { }
 
   ngOnInit() {
-   this.nodes =[
+    this.nodes=[{
+      name: 'root1',
+      id:1,
+      displayName: 'root1',
+      expanded: true,
+      selectable: true,
+      state: {
+        entitled: true,
+        disabled: false
+      },
+      children: [
+        {
+          name: 'child1',
+          displayName: 'child1',
+          id:36,
+          expanded: false,
+          selectable: true,
+          state: {
+            entitled: true,
+            disabled: true
+          }
+        },
+        {
+          name: 'child2',
+          displayName: 'child2',
+          id:356,
+          expanded: false,
+          selectable: true,
+          state: {
+            entitled: true,
+            disabled: false
+          }
+        },
+        {
+          name: 'child3',
+          displayName: 'child3',
+          id:3568,
+          expanded: false,
+          selectable: true,
+          state: {
+            entitled: true,
+            disabled: false
+          }
+        }
+      ]
+  }]
+  /*  this.nodes =[
     {
       name: 'root1',
       id:1,
@@ -112,7 +158,7 @@ export class LibraryComponent implements OnInit,AfterViewInit {
         }
       ]
     }
-  ];
+  ]; */
 
    this.options = {
       displayField: 'displayName',
