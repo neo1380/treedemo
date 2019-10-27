@@ -233,7 +233,11 @@ export class TreeNode implements ITreeNode {
         if (children) {
           this.setField('children', children);
           this._initChildren();
-          if (this.options.useTriState && this.treeModel.isSelected(this)) {
+         /*  if (this.options.useTriState && this.treeModel.isSelected(this)) {
+            this.setIsSelected(true);
+          } */
+          /*doc: code updated to remove tristate feature*/
+          if (this.treeModel.isSelected(this)) {
             this.setIsSelected(true);
           }
           this.children.forEach((child) => {
