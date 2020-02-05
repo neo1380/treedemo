@@ -10,7 +10,8 @@ import { TreeNode } from '../models/tree-node.model';
 
      
 
-      <tree-node-checkbox *ngIf="node.options.useCheckbox" [node]="node"></tree-node-checkbox>
+      <tree-node-checkbox *ngIf="node.options.useCheckbox && !node.options.useRadio" [node]="node"></tree-node-checkbox>
+      <tree-node-radio *ngIf="node.options.useRadio && !node.options.useCheckbox && !node.children" [node]="node"></tree-node-radio>
         <tree-node-expander [node]="node"></tree-node-expander>
         <div class="node-content-wrapper"
           [class.node-content-wrapper-active]="node.isActive"

@@ -17,6 +17,7 @@ export const TREE_ACTIONS = {
   TOGGLE_ACTIVE_MULTI: (tree: TreeModel, node: TreeNode, $event: any) => node && node.toggleActivated(true),
   TOGGLE_SELECTED: (tree: TreeModel, node: TreeNode, $event: any) => node && node.toggleSelected(),
   ACTIVATE: (tree: TreeModel, node: TreeNode, $event: any) => node.setIsActive(true),
+  TOGGLE_RADIO: (tree: TreeModel, node: TreeNode, $event: any) => { node.toggleRadio()},
   DEACTIVATE: (tree: TreeModel, node: TreeNode, $event: any) => node.setIsActive(false),
   SELECT: (tree: TreeModel, node: TreeNode, $event: any) => node.setIsSelected(true),
   DESELECT: (tree: TreeModel, node: TreeNode, $event: any) => node.setIsSelected(false),
@@ -45,6 +46,8 @@ const defaultActionMapping: IActionMapping = {
     contextMenu: null,
     expanderClick: TREE_ACTIONS.TOGGLE_EXPANDED,
     checkboxClick: TREE_ACTIONS.TOGGLE_SELECTED,
+    radioClick: TREE_ACTIONS.TOGGLE_RADIO,
+    selectNode:TREE_ACTIONS.TOGGLE_SELECTED,
     drop: TREE_ACTIONS.MOVE_NODE
   },
   keys: {
@@ -64,6 +67,8 @@ export interface IActionMapping {
     contextMenu?: IActionHandler,
     expanderClick?: IActionHandler,
     checkboxClick?: IActionHandler,
+    radioClick?: IActionHandler,
+    selectNode?:IActionHandler,
     dragStart?: IActionHandler,
     drag?: IActionHandler,
     dragEnd?: IActionHandler,
@@ -93,6 +98,7 @@ export class TreeOptions {
   get rtl(): boolean { return !!this.options.rtl; }
   get rootId(): any {return this.options.rootId; }
   get useCheckbox(): boolean { return this.options.useCheckbox; }
+  get useRadio(): boolean { return this.options.useRadio; }
   get useTriState(): boolean { return this.options.useTriState === undefined ? true : this.options.useTriState; }
   get scrollContainer(): HTMLElement { return this.options.scrollContainer; }
   get allowDragoverStyling(): boolean { return this.options.allowDragoverStyling === undefined ? true : this.options.allowDragoverStyling; }

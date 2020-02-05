@@ -59,20 +59,43 @@ export class LibraryComponent implements OnInit,AfterViewInit {
             entitled: true,
             disabled: false
           }
-        },
-        {
-          name: 'child3',
-          displayName: 'child3',
-          id:3568,
-          expanded: false,
-          selectable: true,
-          state: {
-            entitled: true,
-            disabled: false
-          }
         }
       ]
-  }]
+  },{
+    name: 'root s 1',
+    id:4555,
+    displayName: 'root1',
+    expanded: true,
+    selectable: true,
+    state: {
+      entitled: true,
+      disabled: false
+    },
+    children: [
+      {
+        name: 'child1',
+        displayName: 'child1',
+        id:1456,
+        expanded: false,
+        selectable: true,
+        state: {
+          entitled: true,
+          disabled: true
+        }
+      },
+      {
+        name: 'child2',
+        displayName: 'child2',
+        id:13265,
+        expanded: false,
+        selectable: true,
+        state: {
+          entitled: true,
+          disabled: false
+        }
+      }
+    ]
+}]
   /*  this.nodes =[
     {
       name: 'root1',
@@ -164,7 +187,8 @@ export class LibraryComponent implements OnInit,AfterViewInit {
       displayField: 'displayName',
       isExpandedField: 'expanded',
       idField: 'uuid',
-      useCheckbox: true,
+      useCheckbox: false,
+      useRadio:true,
       useTriState: true,
       checkBoxField:'selectable',
       isDisabledCheckboxField:'state.disabled',
@@ -196,7 +220,7 @@ export class LibraryComponent implements OnInit,AfterViewInit {
    this.treeModel = this.treeComponent.treeModel;
   }
   onEvent($event){
-    console.log($event);
+    // console.log($event);
   }
   addNode(tree: any) {
     this.nodes[0].children.push({
@@ -222,7 +246,10 @@ export class LibraryComponent implements OnInit,AfterViewInit {
 
   getSelectedNodes(tree:TreeModel)
 {
-  console.log(tree.activeNodes);
+  console.clear();
+ // console.log(tree.activeNodes);
+  console.log(tree.activeNodes.length);
+
     Object.keys(tree.selectedLeafNodeIds).forEach(x=>{
       let node:TreeNode=tree.getNodeById(x);
       if (node.isSelected)

@@ -276,6 +276,10 @@ export interface ITreeOptions {
      */
     useCheckbox?: boolean;
     /**
+     * Whether to display a checkbox next to the node or not
+     */
+    useRadio?: boolean;
+    /**
      * Whether to use master checkboxes mechanism if the useCheckbox is set to true
      */
     useTriState?: boolean;

@@ -334,6 +334,20 @@ export class TreeNode implements ITreeNode {
 
   setIsActive(value, multi = false) {
     this.treeModel.setActiveNode(this, value, multi);
+
+    if (value) {
+      this.focus(this.options.scrollOnActivate);
+    }
+
+    return this;
+  }
+
+  setIsRadioActive(value, multi = false) {
+    this.treeModel.setActiveNode(this, value, multi);
+
+    if (this.options.useRadio) {
+        this.setIsSelected(value);
+    }
     if (value) {
       this.focus(this.options.scrollOnActivate);
     }
@@ -346,7 +360,7 @@ export class TreeNode implements ITreeNode {
   }
 
   @action setIsSelected(value) {
-    if(!this.isDisabledCheckbox){
+    if(!this.isDisabledCheckbox || this.options.useRadio){
       if (this.isSelectable()) {
         this.treeModel.setSelectedNode(this, value);
       } else {
@@ -359,6 +373,15 @@ export class TreeNode implements ITreeNode {
 
   toggleSelected() {
     this.setIsSelected(!this.isSelected);
+    return this;
+  }
+  toggleRadio() {
+    const selectedNodes = this.treeModel.selectedLeafNodes;
+    selectedNodes.forEach(node => {
+        node.setIsSelected(false);
+    });
+    this.setIsSelected(true);
+    this.setIsActive(this.isSelected, false);
     return this;
   }
 
@@ -418,9 +441,14 @@ export class TreeNode implements ITreeNode {
 
   mouseAction(actionName: string, $event, data: any = null) {
     this.treeModel.setFocus(true);
-
+    if (this.options.useRadio) {
+     actionName = 'radioClick';
+     // actionName = 'selectNode';
+    }
+  
     const actionMapping = this.options.actionMapping.mouse;
     const action = actionMapping[actionName];
+
 
     if (action) {
       action(this.treeModel, this, $event, data);

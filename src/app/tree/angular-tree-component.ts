@@ -20,6 +20,7 @@ import { TreeNodeCollectionComponent } from './components/tree-node-collection.c
 import { TreeNodeWrapperComponent } from './components/tree-node-wrapper.component';
 import { TreeViewportComponent } from './components/tree-viewport.component';
 import { TreeNodeCheckboxComponent } from './components/tree-node-checkbox.component';
+import { TreeNodeRadioComponent } from './components/tree-node-radio.component';
 import { TreeDropDirective } from './directives/tree-drop.directive';
 import { TreeDragDirective } from './directives/tree-drag.directive';
 import { TreeAnimateOpenDirective } from './directives/tree-animate-open.directive';
@@ -41,6 +42,7 @@ import './polyfills';
     TreeViewportComponent,
     TreeNodeWrapperComponent,
     TreeNodeCheckboxComponent,
+    TreeNodeRadioComponent,
     TreeAnimateOpenDirective
   ],
   exports: [
@@ -57,6 +59,7 @@ import './polyfills';
     TreeViewportComponent,
     TreeNodeWrapperComponent,
     TreeNodeCheckboxComponent,
+    TreeNodeRadioComponent,
     TreeAnimateOpenDirective
   ],
   imports: [

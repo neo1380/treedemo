@@ -526,13 +526,18 @@ export class TreeModel implements ITreeModel, OnDestroy {
   }
 
   private _setActiveNodeSingle(node, value) {
+
+
+  
     // Deactivate all other nodes:
     this.activeNodes
       .filter((activeNode) => activeNode !== node)
       .forEach((activeNode) => {
         this.fireEvent({ eventName: TREE_EVENTS.deactivate, node: activeNode });
         this.fireEvent({ eventName: TREE_EVENTS.nodeDeactivate, node: activeNode }); // For IE11
+        // this.fireEvent({ eventName: TREE_EVENTS.deselect, node: activeNode }); // For IE11
       });
+
 
     if (value) {
       this.activeNodeIds = {[node.id]: true};
